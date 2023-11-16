@@ -25,6 +25,7 @@ export const auth=getAuth(app)
 
 // google authentication
 import { GoogleAuthProvider } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 export const provider = new GoogleAuthProvider();
 
@@ -32,3 +33,8 @@ export const provider = new GoogleAuthProvider();
 // database
 
 export const db = getFirestore(app);
+
+
+// storage
+
+export const storage=getStorage(app)

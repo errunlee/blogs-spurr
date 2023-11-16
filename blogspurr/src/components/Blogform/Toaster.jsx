@@ -21,7 +21,7 @@ const Toaster = () => {
         pauseOnHover
         theme="dark"
       />
-      <ToastContainer />   
+        
     </>
   )
 }

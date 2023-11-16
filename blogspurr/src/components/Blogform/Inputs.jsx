@@ -1,25 +1,34 @@
+import React from "react";
+
+const Inputs = ({ title, setTitle, photo, setPhoto }) => {
+
+  const handlePhotoChange = (e) => {
+    if (e.target.files[0]) {
+      setPhoto(e.target.files[0]);
+    }
+  };
 
 
-import React from 'react'
-
-const Inputs = ({title,setTitle}) => {
   return (
-        <section>
-        
-        <div className="files flex flex-col mb-2">
-            <label htmlFor="">Upload image</label>
-            <input type='file'/>
-        </div>
-        
-        <p>Title:</p>
+    <section>
+      <div className="files flex flex-col mb-2">
+        <label htmlFor="">Upload image</label>
         <input
-          type="text"
-          className="border-b-2 outline-none border-black focus:border-b-3"
-          value={title}
-          onChange={(e)=>setTitle(e.target.value)}
+          onChange={(e) => handlePhotoChange(e)}
+          type="file"
         />
-      </section>
-  )
-}
+      </div>
 
-export default Inputs
+      <p>Title:</p>
+      <input
+        type="text"
+        className="border-b-2 outline-none border-black focus:border-b-3"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+    </section>
+  );
+};
+
+export default Inputs;
+

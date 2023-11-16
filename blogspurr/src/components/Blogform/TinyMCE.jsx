@@ -5,16 +5,25 @@ import "react-toastify/dist/ReactToastify.css";
 import dbService from "../../firebase/config";
 import Toaster from "./Toaster";
 import Inputs from "./Inputs";
+import { storageService } from "../../firebase/storage";
+import { useSelector } from "react-redux";
+import { current } from "@reduxjs/toolkit";
 
 export default function TinyMCE() {
   const [title, setTitle] = useState("");
+  const [photo, setPhoto] = useState(null)
 
   const notify = (status) => toast(status);
+  const currentUser=useSelector(state=>state.user)
+
 
   const editorRef = useRef(null);
 
   //   add blog to db
   const handleAddBlog = async () => {
+    if(!currentUser){
+      return notify('Please Login First')
+    }
     let detail;
 
     // get text from tinyMCE editor
@@ -26,12 +35,15 @@ export default function TinyMCE() {
       return;
     }
     //
-    if (title === "" || detail === "") {
+    if (title === "" || detail === "" || photo===null) {
       notify("All fields are required!");
       return;
     }
 
-    const isAdded = await dbService.addBlog(title, detail);
+    const getPhotoUrl=await storageService.uploadImage(photo)
+
+    const isAdded = await dbService.addBlog(title, detail,getPhotoUrl);
+
     if (isAdded) {
       notify("Blog posted successfully");
       setTitle("");
@@ -84,7 +96,7 @@ export default function TinyMCE() {
         }}
       />
       <div>
-        <Inputs title={title} setTitle={setTitle}/>
+        <Inputs title={title} setTitle={setTitle} photo={photo} setPhoto={setPhoto}/>
         <button
           className="mt-1 btn bg-yellow-500 px-3 py-2 flex justify-center items-center gap-3"
           onClick={handleAddBlog}

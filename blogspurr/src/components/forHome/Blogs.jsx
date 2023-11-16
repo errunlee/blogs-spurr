@@ -25,7 +25,8 @@ const Blogs = () => {
             return(
                 <div key={blog.id} className="border border-2 my-2 p-3">
                     <h1 className="text-3xl">{blog.title}</h1>
-                    <p className="text-2xl mb-4">{blog.blog}</p>
+                    <p className="text-2xl mb-4" >{blog.blog}</p>
+                    <img src={blog.image} alt='poster'/>
                 </div>
             )
         })

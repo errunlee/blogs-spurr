@@ -4,12 +4,13 @@ import { collection, addDoc, getDocs, deleteDoc,getDoc } from "firebase/firestor
 
 export class DbService {
 
-    async addBlog(title,blog) {
+    async addBlog(title,blog,image) {
         //code to insert blog into database
         try {
             const docRef = await addDoc(collection(db, "blogs"), {
                 title,
                 blog,
+                image,
             });
             console.log("Document written with ID: ", docRef.id);
             return true
