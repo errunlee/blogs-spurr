@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import  Navbar  from "./components/Navbar/Nav";
 import Create from "./pages/createBlog/Create";
+import BlogDetail from "./pages/BlogDetail";
+import Signup from "./pages/auth/Signup";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -36,11 +38,13 @@ function App() {
     <>
       <Router>
       <Navbar />
-
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Signup />} />
+
           <Route path='/create-blog' element={<Create/>}></Route>
+          <Route path='/viewblog/:id' element={<BlogDetail/>}/>
         </Routes>
       </Router>
     </>

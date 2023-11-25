@@ -9,7 +9,7 @@ const Homepage = () => {
   const isLoggedIn = useSelector((state) => state.user);
   return (
     <div>
-      <h1>Hi this is Homepage.</h1>
+      <h1 className="text-4xl my-2">Browse blogs posted by users all over the world.</h1>
       {isLoggedIn ? <Blogs /> : <NotLoggedIn />}
     </div>
   );

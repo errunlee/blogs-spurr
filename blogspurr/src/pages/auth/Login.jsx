@@ -7,7 +7,6 @@ import authService from '../../firebase/auth';
 import { signIn, signUserOut } from '../../features/blogSlices';
 import { useNavigate } from 'react-router';
 
-
 const Login = () => {
 
   const dispatch = useDispatch();
@@ -34,3 +33,5 @@ const Login = () => {
 }
 
 export default Login
+
+
