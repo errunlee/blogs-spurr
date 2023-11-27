@@ -8,12 +8,17 @@ import Inputs from "./Inputs";
 import { storageService } from "../../firebase/storage";
 import { useSelector } from "react-redux";
 import { current } from "@reduxjs/toolkit";
+import BasicModal from "../BasicModal";
+import { useNavigate } from "react-router-dom";
 
 export default function TinyMCE() {
   const [title, setTitle] = useState("");
   const [photo, setPhoto] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const notify = (status) => toast(status);
+
+  const navigate = useNavigate();
+
   const currentUser = useSelector((state) => state.user);
 
   const editorRef = useRef(null);
@@ -37,7 +42,9 @@ export default function TinyMCE() {
       notify("All fields are required!");
       return;
     }
+
     setLoading(true);
+
     const getPhotoUrl = await storageService.uploadImage(photo);
 
     const isAdded = await dbService.addBlog(
@@ -54,6 +61,9 @@ export default function TinyMCE() {
       notify("Failed to post blog");
     }
     setLoading(false);
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   };
 
   //
@@ -119,6 +129,7 @@ export default function TinyMCE() {
           />{" "}
           Publish Blog
         </button>
+        <BasicModal isLoading={loading} />
       </div>
     </>
   );

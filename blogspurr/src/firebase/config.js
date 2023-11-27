@@ -46,6 +46,7 @@ export class DbService {
 
   async deleteBlog(id) {
     await deleteDoc(doc(db, "blogs", id));
+    return true;
   }
 
   // async fetchDoc(id) {
@@ -79,6 +80,7 @@ export class DbService {
       console.log(e);
     }
   }
+
 }
 
 const dbService = new DbService();

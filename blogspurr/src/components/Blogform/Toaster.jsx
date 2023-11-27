@@ -5,8 +5,12 @@ import React from 'react'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const notify = (status) => toast(status);
+
 
 const Toaster = () => {
+  
+
   return (
     <>
       <ToastContainer
@@ -27,3 +31,4 @@ const Toaster = () => {
 }
 
 export default Toaster
+export {notify}

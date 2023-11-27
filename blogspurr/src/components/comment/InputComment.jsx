@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import dbService from "../../firebase/config";
 import Toaster from "../Blogform/Toaster";
 import { toast } from "react-toastify";
+import BasicModal from "../BasicModal";
 
 function InputComment({ comments, id }) {
   const [comment, setComment] = useState("");
-
+  const [loading,setLoading]=useState(false)
   const notify = (status) => toast(status);
 
   const handleAdd = async () => {
+    setLoading(true)
     try{
-
       await dbService.addNewComment(id, comment,comments);
       setComment('');
       notify("Comment added successfullly")
@@ -18,6 +19,7 @@ function InputComment({ comments, id }) {
     catch(e){
       notify("Failed to comment right now")
     }
+    setLoading(false)
   };
   return (
     <div>

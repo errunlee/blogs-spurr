@@ -12,7 +12,7 @@ const Inputs = ({ title, setTitle, photo, setPhoto }) => {
   return (
     <section>
       <div className="files flex flex-col mb-2">
-        <label htmlFor="">Upload image <span className="text-red-500 text-xl">*</span></label>
+        <label htmlFor="">Upload image</label>
         <input
           onChange={(e) => handlePhotoChange(e)}
           type="file"
