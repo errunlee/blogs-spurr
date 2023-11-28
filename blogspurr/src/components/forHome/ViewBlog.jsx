@@ -2,32 +2,46 @@ import React, { useEffect, useState } from "react";
 import BasicModal from "../BasicModal";
 
 function ViewBlog({ blogData }) {
-  const [loading,setLoading]=useState(true)
+  const [loading, setLoading] = useState(true);
   const noImage =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
   const content = blogData.blog;
   const postedAtinSec = blogData?.postedAt?.seconds;
   const postedAt = new Date(postedAtinSec * 1000).toLocaleString();
-  
+
   useEffect(() => {
-    const interval=setInterval(() => {
-      setLoading(false)
-    }, (1000));
-  
+    const interval = setInterval(() => {
+      setLoading(false);
+    }, 1000);
+
     return () => {
-      clearInterval(interval)
-    }
-  }, [])
-  
+      clearInterval(interval);
+    };
+  }, []);
+
+  const { selectedTags } = blogData;
+
   return (
     <div className=" ">
       <BasicModal isLoading={loading}></BasicModal>
-      <img className="w-1/2 h-[400px]" src={blogData.image || noImage} alt="" />
-      <h1 className="text-3xl font-extrabold mt-5 text-[#581c87] capitalize">
+      <img className=" h-[400px]" src={blogData.image || noImage} alt="" />
+
+<div className="flex items-center">
+  Tags
+  {selectedTags?.map((tag) => {
+        return (
+          <button className="btn-sm bg-blue-500 px-2 py-1 rounded hover:bg-blue-300 m-2">
+            {tag?.name}
+          </button>
+        );
+      })}
+</div>
+      
+      <h1 className="text-3xl font-extrabold mt-5 text-light capitalize">
         {blogData.title}
       </h1>
 
-      <p className="text-gray-600 text-sm my-2 ">
+      <p className="text-gray-300 text-sm my-2 ">
         Posted <span className="lowercase">on</span> {postedAt}
       </p>
 

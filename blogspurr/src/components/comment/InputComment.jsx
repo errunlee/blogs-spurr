@@ -29,7 +29,7 @@ function InputComment({ comments, id }) {
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         type="text"
-        className="px-3 py-2 border-2 "
+        className="px-3 py-2 border-2 text-black "
       />
       <button
         className="px-3 py-2 bg-blue-500 hover:bg-blue-300"

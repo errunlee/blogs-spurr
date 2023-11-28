@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 
 export class DbService {
-  async addBlog(title, blog, image, postedBy, comments = []) {
+  async addBlog(title, blog, image, postedBy, comments = [],selectedTags=[]) {
     const time = serverTimestamp();
 
     //code to insert blog into database
@@ -24,6 +24,7 @@ export class DbService {
         image,
         postedBy,
         postedAt: time,
+        selectedTags,
         comments,
       });
       console.log("Document written with ID: ", docRef.id, "at", time);

@@ -41,7 +41,7 @@ function BlogDetail() {
   const comments = blogData.comments || [];
 
   return (
-    <div className="p-3 relative">
+    <div className="px-9 relative">
       <ViewBlog blogData={blogData} />
       <Comments comments={comments} id={id} />
 
