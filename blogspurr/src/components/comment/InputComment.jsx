@@ -3,27 +3,38 @@ import dbService from "../../firebase/config";
 import Toaster from "../Blogform/Toaster";
 import { toast } from "react-toastify";
 import BasicModal from "../BasicModal";
+import { useSelector } from "react-redux";
+import { serverTimestamp } from "firebase/firestore";
 
 function InputComment({ comments, id }) {
   const [comment, setComment] = useState("");
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   const notify = (status) => toast(status);
 
+  const currentUser = useSelector((state) => state.user);
+
   const handleAdd = async () => {
-    setLoading(true)
-    try{
-      await dbService.addNewComment(id, comment,comments);
-      setComment('');
-      notify("Comment added successfullly")
+
+    setLoading(true);
+    
+    try {
+      const payload = {
+        comment,
+        commentedBy: currentUser.displayName,
+        replies:[],
+        id:Date.now()
+      };
+      await dbService.addNewComment(id, payload, comments);
+      setComment("");
+      notify("Comment added successfullly");
+    } catch (e) {
+      notify("Failed to comment right now"+e);
     }
-    catch(e){
-      notify("Failed to comment right now")
-    }
-    setLoading(false)
+    setLoading(false);
   };
   return (
     <div>
-    <Toaster/>
+      <Toaster />
 
       <input
         value={comment}

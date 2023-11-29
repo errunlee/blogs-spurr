@@ -1,6 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap");
+body {
+  background-color: rgb(15, 23, 42);
+  color: white !important;
+  font-family: "Roboto", sans-serif;
+}
 
-
-body{
-    background-color: rgb(15, 23, 42);
-    color: white !important;
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+footer {
+  margin-top: auto;
 }

@@ -11,7 +11,8 @@ import  Navbar  from "./components/Navbar/Nav";
 import Create from "./pages/createBlog/Create";
 import BlogDetail from "./pages/BlogDetail";
 import Signup from "./pages/auth/Signup";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
+import About from "./pages/About";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
-
+          <Route path="/about" element={<About />} />
           <Route path='/create-blog' element={<Create/>}></Route>
           <Route path='/viewblog/:id' element={<BlogDetail/>}/>
         </Routes>

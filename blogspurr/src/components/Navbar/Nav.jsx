@@ -18,7 +18,7 @@ const Navbar = () => {
       console.log("error logging out: ", error);
     }
   };
-
+console.log(isLoggedIn);
   return (
     <div>
       <nav className="bg-gray-700 text-white p-3">
@@ -27,8 +27,8 @@ const Navbar = () => {
             <Link to="/">Blogsspurr</Link>
           </li>
           <div className="flex gap-3">
-            <li>Home</li>
-            <li>About</li>
+            <Link to='/'>Home</Link>
+            <Link to='/about'>About</Link>
             <Link to='/create-blog'>Create Post</Link>
             {isLoggedIn ? (
               <button
@@ -37,6 +37,7 @@ const Navbar = () => {
               >
                 Logout
               </button>
+              
             ) : (
               <Link to="/login"> Login </Link>
             )}

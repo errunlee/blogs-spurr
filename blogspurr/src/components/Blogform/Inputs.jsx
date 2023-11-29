@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Tag from "./Tag";
 
 const Inputs = ({ title, setTitle, photo, setPhoto,tags,setSelectedTags,selectedTags }) => {
 
@@ -21,6 +22,9 @@ const Inputs = ({ title, setTitle, photo, setPhoto,tags,setSelectedTags,selected
     }
   };
 
+  useEffect(()=>{
+    setSelectedTags([])
+  },[])
   return (
     <section>
       <div className="files flex flex-col mb-2">
@@ -33,18 +37,8 @@ const Inputs = ({ title, setTitle, photo, setPhoto,tags,setSelectedTags,selected
         <span className="text-red-500">*</span>
         <br />
         {tags.map((tag) => {
-          const { isSelected } = tag;
           return (
-            <button
-              onClick={() => handleClick(tag)}
-              className={`btn-sm bg-gray-100 m-2 text-black rounded px-2 py-1 transition-all ${
-                isSelected ? "bg-gray-600 text-white" : null
-              }`}
-            >
-              {tag.name}
-
-              {isSelected && <span className="ms-2 text-red-200">x</span>}
-            </button>
+            <Tag tag={tag} handleClick={handleClick}/>
           );
         })}
       </section>

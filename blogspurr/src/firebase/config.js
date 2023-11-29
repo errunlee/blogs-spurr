@@ -13,7 +13,14 @@ import {
 } from "firebase/firestore";
 
 export class DbService {
-  async addBlog(title, blog, image, postedBy, comments = [],selectedTags=[]) {
+  async addBlog(
+    title,
+    blog,
+    image,
+    postedBy,
+    comments = [],
+    selectedTags = []
+  ) {
     const time = serverTimestamp();
 
     //code to insert blog into database
@@ -51,7 +58,7 @@ export class DbService {
   }
 
   // async fetchDoc(id) {
-  //   const docRef = doc(db, "blogs", id);  
+  //   const docRef = doc(db, "blogs", id);
   //   return new Promise((resolve, reject) => {
   //     const unsubscribe = onSnapshot(docRef, (doc) => {
   //       if (doc.exists()) {
@@ -68,10 +75,8 @@ export class DbService {
   //   });
   // }
 
-  
   async addNewComment(docId, comment, comments) {
     const updatedComments = [...comments, comment];
-    console.log('updated'+updatedComments);
     try {
       const docRef = doc(db, "blogs", docId);
       await updateDoc(docRef, {
@@ -82,6 +87,25 @@ export class DbService {
     }
   }
 
+  async replyToComment(commentId, comments, reply,docId) {
+    const updatedComments = comments.map((comment) => {
+      if (comment.id === commentId) {
+        const newReplies=[...comment.replies, reply]
+         return {...comment,replies:newReplies}
+      } else {
+        return comment;
+      }
+    });
+
+    try {
+      const docRef = doc(db, "blogs", docId);
+      await updateDoc(docRef, {
+        comments: updatedComments,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 const dbService = new DbService();

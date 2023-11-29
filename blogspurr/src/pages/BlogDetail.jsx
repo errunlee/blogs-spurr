@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ViewBlog from "../components/forHome/ViewBlog";
-import Comments from "../components/Comments";
-import { useParams } from "react-router-dom";
+import Comments from "../components/comment/Comments";
+import { useNavigate, useParams } from "react-router-dom";
 import dbService from "../firebase/config";
 import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../firebase";
@@ -13,8 +13,13 @@ function BlogDetail() {
   const [isVisible, setIsVisible] = useState(false);
   const [loading,setLoading]=useState(true)
   const { id } = useParams();
+  const navigate=useNavigate();
+
   const user = useSelector((state) => state.user);
 
+  if(!user){
+    navigate('/login')
+  }
   useEffect(() => {
     setLoading(true)
     const docRef = doc(db, "blogs", id);
@@ -40,6 +45,7 @@ function BlogDetail() {
   }
   const comments = blogData.comments || [];
 
+  
   return (
     <div className="px-9 relative">
       <ViewBlog blogData={blogData} />

@@ -22,7 +22,7 @@ function ViewBlog({ blogData }) {
   const { selectedTags } = blogData;
 
   return (
-    <div className=" ">
+    <div className=" mt-3">
       <BasicModal isLoading={loading}></BasicModal>
       <img className=" h-[400px]" src={blogData.image || noImage} alt="" />
 

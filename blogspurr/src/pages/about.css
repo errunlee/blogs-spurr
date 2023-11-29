@@ -1,0 +1,28 @@
+
+
+.about-wrapper{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,92,1) 40%, rgba(0,212,255,1) 100%); 
+    width: 100vw;
+    /* height: 100vh; */
+}
+
+.empty{
+    height: 45vh;
+    background-color: #cdd6c2;
+}
+.empty1{
+    height: 45vh;
+}
+
+.about-wrapper .image{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.image img{
+
+    /* height: 400px; */
+    width: 500px;
+}

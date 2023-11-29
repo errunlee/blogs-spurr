@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import { Formik, Field, ErrorMessage, Form } from "formik";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import * as Yup from "yup";
 import authService from "../firebase/auth";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { signIn } from "../features/blogSlices";
-import { Formik, Field, ErrorMessage, Form } from "formik";
-import * as Yup from "yup";
-import BasicModal from "./BasicModal";
+import Toaster, { notify } from "./Blogform/Toaster";
 const validationSchema = Yup.object({
-  fullName: Yup.string()
-    .required("This field is required")
-    .min(3, "at least 3"),
   email: Yup.string()
     .required("This field is required")
     .email("invlaid format"),
@@ -19,55 +14,41 @@ const validationSchema = Yup.object({
     .min(8, "at least 8"),
 });
 
-function Register() {
-  const [loading,setLoading]=useState(false)
-
-  const navigate = useNavigate();
-
+function Loginformik({setLoading}) {
   const dispatch = useDispatch();
 
   const initialValues = {
-    fullName: "",
     email: "",
     password: "",
   };
 
   const handleSubmit = async (values) => {
-    setLoading(true)
-    const isCreated = await authService.registerWithEmailPassword(
-      auth,
-      values.email,
-      values.password
-    );
-    await authService.updateUserProfile(values.fullName);
-    dispatch(signIn(isCreated));
-    if (isCreated) {
+    setLoading(true);
+    try {
+      const isLogged = await authService.loginWithEmailPass(
+        auth,
+        values.email,
+        values.password
+      );
+      dispatch(signIn(isLogged));
       navigate("/");
-    } else {
-      alert("failed to create account" + isCreated);
+
+    } catch (e) {
+        notify("Failed to login,please check the credentials ")
+        console.log(e);
     }
     setLoading(false)
   };
 
   return (
     <>
-    <BasicModal isLoading={loading}/>
-    <h1 className="text-3xl my-3 font-mono text-slate-300 font-bold text-center">Join thousands of bloggers from all over the world now!</h1>
+    <Toaster/>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <Form className="flex flex-col m-2 items-center">
-          <Field
-            name="fullName"
-            type="text"
-            placeholder="Full name"
-            className="px-3 py-2 bg-gray-300 text-black "
-          />
-          <p className="text-red-500 mb-3">
-            <ErrorMessage name="fullName" />
-          </p>
           <Field
             name="email"
             type="text"
@@ -92,12 +73,17 @@ function Register() {
             className="bg-yellow-700 px-4 py-3 rounded hover:bg-yellow-600"
             type="submit"
           >
-            Create account
+            Login
           </button>
+          <>
+            <Link className="underline" to="/register">
+              Don't have an account? Create now!{" "}
+            </Link>
+          </>
         </Form>
       </Formik>
     </>
   );
 }
 
-export default Register;
+export default Loginformik;

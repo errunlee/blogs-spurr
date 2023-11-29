@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,6 +27,11 @@ export default function TinyMCE() {
 
   const editorRef = useRef(null);
 
+  useEffect(()=>{
+    let newArray = tagArray.map(obj => ({ ...obj, isSelected: false }));
+    setTags(newArray)
+  },[])
+
   //   add blog to db
   const handleAddBlog = async () => {
     if (!currentUser) {
@@ -42,7 +47,7 @@ export default function TinyMCE() {
       return;
     }
     //
-    if (title === "" || detail === "" || tags?.length<1) {
+    if (title === "" || detail === "" || selectedTags?.length<1) {
       notify("All fields are required!");
       return;
     }
@@ -54,7 +59,7 @@ export default function TinyMCE() {
       title,
       detail,
       getPhotoUrl,
-      currentUser.email,
+      currentUser.displayName || currentUser.email,
       comments,
       selectedTags
     );
