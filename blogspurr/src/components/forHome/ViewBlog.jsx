@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BasicModal from "../BasicModal";
+import parse from 'html-react-parser';
 
 function ViewBlog({ blogData }) {
   const [loading, setLoading] = useState(true);
@@ -47,7 +48,9 @@ function ViewBlog({ blogData }) {
 
       <p className="font-bold text-[#ea580c]">Posted by:{blogData.postedBy}</p>
       <div>
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
+        <div>
+          {parse(content)}
+        </div>
       </div>
     </div>
   );

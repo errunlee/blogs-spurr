@@ -7,7 +7,6 @@ import Toaster from "./Toaster";
 import Inputs from "./Inputs";
 import { storageService } from "../../firebase/storage";
 import { useSelector } from "react-redux";
-import { current } from "@reduxjs/toolkit";
 import BasicModal from "../BasicModal";
 import { useNavigate } from "react-router-dom";
 import { tags as tagArray } from "./tags";

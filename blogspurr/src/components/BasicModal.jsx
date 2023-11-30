@@ -20,7 +20,7 @@ const style1 = {
 export default function BasicModal({ isLoading }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const handleClose = () => setOpen(false);
 
   React.useEffect(() => {
     if (isLoading) {
@@ -35,7 +35,7 @@ export default function BasicModal({ isLoading }) {
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         open={open}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
