@@ -10,4 +10,7 @@ export default defineConfig({
       // Add other rollup options if needed
     },
   },
+  optimizeDeps: {
+    include: ['@tinymce/tinymce-react'],
+  },
 })
