@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.18",
     "@reduxjs/toolkit": "^1.9.7",
+    "@tinymce/tinymce-react": "^4.3.2",
     "firebase": "^10.5.2",
     "formik": "^2.4.5",
     "html-react-parser": "^5.0.6",

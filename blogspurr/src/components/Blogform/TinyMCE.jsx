@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Editor } from "@tinymce/tinymce-react";
-// import {Editor} from '../../../node_modules/@tinymce/tinymce-react'
+// import { Editor } from "@tinymce/tinymce-react";
+import {Editor} from '../../../node_modules/@tinymce/tinymce-react'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import dbService from "../../firebase/config";
@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 import BasicModal from "../BasicModal";
 import { useNavigate } from "react-router-dom";
 import { tags as tagArray } from "./tags";
-
 export default function TinyMCE() {
   const [title, setTitle] = useState("");
   const [photo, setPhoto] = useState(null);
