@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+// import {Editor} from '../../../node_modules/@tinymce/tinymce-react'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import dbService from "../../firebase/config";
