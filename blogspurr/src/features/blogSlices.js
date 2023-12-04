@@ -1,24 +1,24 @@
-
-
 import { createSlice } from "@reduxjs/toolkit";
-import {createBlog, removeBlog,getBlogs,login,logout} from './reducers'
-const initialState={
-    user:null,
-    blogs:[]
-}
+import { createBlog, removeBlog, getBlogs, login, logout } from "./reducers";
 
-const blogSlice=createSlice({
-    name:'blogs',
-    initialState,
-    reducers:{
-        addBlog:createBlog,
-        deleteBlog:removeBlog,
-        readBlogs:getBlogs,
-        signIn:login,
-        signUserOut:logout
-    }
-})
+const initialState = {
+  user: null,
+  blogs: [],
+};
 
-export const {addBlog,deleteBlog,readBlogs,signIn,signUserOut}=blogSlice.actions;
+const blogSlice = createSlice({
+  name: "blogs",
+  initialState,
+  reducers: {
+    addBlog: createBlog,
+    deleteBlog: removeBlog,
+    readBlogs: getBlogs,
+    signIn: login,
+    signUserOut: logout,
+  },
+});
 
-export default blogSlice.reducer
+export const { addBlog, deleteBlog, readBlogs, signIn, signUserOut } =
+  blogSlice.actions;
+
+export default blogSlice.reducer;

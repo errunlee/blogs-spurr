@@ -7,12 +7,16 @@ import authService from "./firebase/auth";
 import { signOut } from "firebase/auth";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/auth/Login";
-import  Navbar  from "./components/Navbar/Nav";
+import Navbar from "./components/Navbar/Nav";
 import Create from "./pages/createBlog/Create";
 import BlogDetail from "./pages/BlogDetail";
 import Signup from "./pages/auth/Signup";
 import Footer from "./components/Footer/Footer";
 import About from "./pages/About";
+import Editpost from "./pages/Editpost";
+import { AnimatePresence } from "framer-motion";
+import RoutesWithAnimation from "./RoutesWithAnimation";
+import LocationProvider from "./LocationProvider";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -39,16 +43,11 @@ function App() {
   return (
     <>
       <Router>
-      <Navbar />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Signup />} />
-          <Route path="/about" element={<About />} />
-          <Route path='/create-blog' element={<Create/>}></Route>
-          <Route path='/viewblog/:id' element={<BlogDetail/>}/>
-        </Routes>
-        <Footer/>
+        <Navbar />
+        <LocationProvider>
+          <RoutesWithAnimation />
+        </LocationProvider>
+        <Footer />
       </Router>
     </>
   );

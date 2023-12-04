@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import dbService from "../../firebase/config";
 import Toaster, { notify } from "../Blogform/Toaster";
 import BasicModal from "../BasicModal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 function EditDelete({ isVisible, id }) {
   const [loading, setLoading] = useState(false);
@@ -27,9 +27,9 @@ function EditDelete({ isVisible, id }) {
     <>
     <div>
       <Toaster />
-      <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mx-2">
+      <Link to={`/edit-post/${id}`} class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mx-2">
         Edit
-      </button>
+      </Link>
       <button
         onClick={deleteBlog}
         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"

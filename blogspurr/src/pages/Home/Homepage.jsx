@@ -1,17 +1,44 @@
 import React from "react";
-import Login from "../auth/Login";
-import dbService from "../../firebase/config";
 import { useSelector } from "react-redux";
 import Blogs from "../../components/forHome/Blogs";
 import NotLoggedIn from "../../components/forHome/NotLoggedIn";
-
+import { motion } from "framer-motion";
 const Homepage = () => {
   const isLoggedIn = useSelector((state) => state.user);
+  const routeVariants = {
+    initial: {
+        y: '100vh'
+    },
+    final: {
+        y: '0vh'
+    }
+}
+
+const childVariants = {
+  initial: {
+    opacity: 0,
+    y: "50px",
+  },
+  final: {
+    opacity: 1,
+    y: "0px",
+    transition: {
+      duration: 0.5,
+      delay: 0.5,
+    },
+  },
+};
+
   return (
-    <div>
-      <h1 className="text-4xl my-4 mx-[5rem]">Top blogs</h1>
+    <motion.div
+    variants={routeVariants}
+    initial="initial"
+    animate="final"
+    className="home component"
+  >
+      <h1  className="text-4xl my-4 mx-[5rem]">Top blogs</h1>
       {isLoggedIn ? <Blogs /> : <NotLoggedIn />}
-    </div>
+    </motion.div>
   );
 };
 

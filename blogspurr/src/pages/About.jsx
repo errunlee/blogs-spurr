@@ -1,15 +1,50 @@
 import React from "react";
 import "./about.css";
 import dpImg from '../assets/img.webp'
+import { motion } from "framer-motion";
+
 const About = () => {
+
+  const routeVariants = {
+    initial: {
+      y: "100vh",
+    },
+    final: {
+      y: "0vh",
+      transition: {
+        type: "spring",
+        mass: 0.4,
+      },
+    },
+  };
+
+const childVariants = {
+  initial: {
+    opacity: 0,
+    y: "50px",
+  },
+  final: {
+    opacity: 1,
+    y: "0px",
+    transition: {
+      duration: 2,
+      delay: 1,
+    },
+  },
+};
   return (
-    <>
+    <motion.div
+    variants={routeVariants}
+    initial="initial"
+    animate="final"
+    className="home component"
+  >
       <div className="about-wrapper relative">
         <div className="empty"></div>
         <div className="empty1"></div>
         <div className="image absolute ">
             <div className="flex justify-center">
-                <p className="text-5xl text-blue-500 font-mono mb-4">Sharing Stories!</p>
+                <motion.h1 variants={childVariants} intial='intial' animate='final' className="text-5xl text-blue-500 font-mono mb-4">Sharing Stories!</motion.h1>
             </div>
             <img src={dpImg} alt="" className=" " />
         </div>
@@ -55,7 +90,7 @@ const About = () => {
         <h1 className="text-5xl mt-4">Happy reading!
         </h1>
       </div>
-    </>
+    </motion.div>
   );
 };
 

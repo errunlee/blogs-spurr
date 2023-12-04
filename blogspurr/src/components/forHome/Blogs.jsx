@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import dbService from "../../firebase/config";
 import { Link } from "react-router-dom";
 import BasicModal from "../BasicModal";
+import { motion } from "framer-motion";
 import "./blogs.css";
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -21,11 +22,25 @@ const Blogs = () => {
     getBlogs();
   }, []);
 
+  const childVariants = {
+    initial: {
+      opacity: 0,
+      y: "50px",
+    },
+    final: {
+      opacity: 1,
+      y: "0px",
+      transition: {
+        duration: 0.5,
+        delay: 0.5,
+      },
+    },
+  };
   return (
     <>
       <BasicModal isLoading={loading} />
 
-      <div className="flex flex-col px-[5rem] items-center">
+      <motion.div variants={childVariants} initial='initial' animate='final' className="flex flex-col px-[5rem] items-center">
         {blogs.length > 0 &&
           blogs.map((blog) => {
             const content = blog.blog.slice(1, 50);
@@ -38,6 +53,7 @@ const Blogs = () => {
 
             return (
               <Link
+              variants={childVariants} initial='initial' animate='final'
                 to={`/viewblog/${blog.id}`}
                 key={blog.id}
                 className="blog-item m-3 rounded my-2 p-4 shadow-lg  transition-all pb-9 w-full hover:-translate-y-2"
@@ -58,16 +74,11 @@ const Blogs = () => {
                   <h1 className="text-2xl font-bold">{blog.title}</h1>
                 </div>
                 <span className="text-[#737373]">Posted on {postedAt}</span>
-                {/* <div className="mt-3">
-                <p
-                  className=""
-                  dangerouslySetInnerHTML={{ __html: content }}
-                ></p>
-              </div> */}
               </Link>
+
             );
           })}
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -106,6 +106,19 @@ export class DbService {
       console.log(e);
     }
   }
+
+  async editPost(docId,editedPost,editedTitle,editedTags){
+    try {
+      const docRef = doc(db, "blogs", docId);
+      await updateDoc(docRef, {
+        blog:editedPost,
+        title:editedTitle,
+        selectedTags:editedTags
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 const dbService = new DbService();

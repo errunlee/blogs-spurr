@@ -18,7 +18,6 @@ const Navbar = () => {
       console.log("error logging out: ", error);
     }
   };
-console.log(isLoggedIn);
   return (
     <div>
       <nav className="bg-gray-700 text-white p-3">

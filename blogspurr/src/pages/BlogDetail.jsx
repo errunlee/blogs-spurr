@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import ViewBlog from "../components/forHome/ViewBlog";
 import Comments from "../components/comment/Comments";
 import { useNavigate, useParams } from "react-router-dom";
-import dbService from "../firebase/config";
 import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../firebase";
 import EditDelete from "../components/forHome/EditDelete";
 import { useSelector } from "react-redux";
-import BasicModal from "../components/BasicModal";
+import { motion } from "framer-motion";
 function BlogDetail() {
   const [blogData, setBlogData] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -45,17 +44,28 @@ function BlogDetail() {
   }
   const comments = blogData.comments || [];
 
-  
+  const childVariants = {
+    initial: {
+      opacity: 0,
+    },
+    final: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        delay: 0.5,
+      },
+    },
+  };
+
   return (
-    <div className="px-9 relative">
+    <motion.div variants={childVariants} initial='initial' animate='final' className="px-9 relative">
       <ViewBlog blogData={blogData} />
       <Comments comments={comments} id={id} />
 
       <div className="absolute top-1 right-2">
         <EditDelete isVisible={isVisible} id={id}/>
       </div>
-      <BasicModal isLoading={loading}/>
-    </div>
+    </motion.div>
   );
 }
 

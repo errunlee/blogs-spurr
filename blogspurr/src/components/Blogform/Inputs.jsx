@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tag from "./Tag";
 
-const Inputs = ({ title, setTitle, photo, setPhoto,tags,setSelectedTags,selectedTags }) => {
+const Inputs = ({ title, setTitle, photo, setPhoto, tags, setTags, setSelectedTags, selectedTags, isEditing }) => {
 
   const handlePhotoChange = (e) => {
     if (e.target.files[0]) {
@@ -11,7 +11,7 @@ const Inputs = ({ title, setTitle, photo, setPhoto,tags,setSelectedTags,selected
 
   const handleClick = (tag) => {
     const { isSelected } = tag;
-    console.log(selectedTags);
+    // console.log('is ',tag);
     if (isSelected) {
       const newTags = selectedTags.filter((item) => item.name !== tag.name);
       setSelectedTags(newTags);
@@ -22,9 +22,15 @@ const Inputs = ({ title, setTitle, photo, setPhoto,tags,setSelectedTags,selected
     }
   };
 
-  useEffect(()=>{
-    setSelectedTags([])
-  },[])
+  useEffect(() => {
+    console.log('selection', selectedTags);
+    const newtags = tags.map((tag) => {
+      const isSelected = selectedTags.some(selectedTag => selectedTag.name === tag.name);
+      return { ...tag, isSelected };
+    });
+
+    setTags(newtags)
+  }, [selectedTags])
   return (
     <section>
       <div className="files flex flex-col mb-2">
@@ -38,11 +44,11 @@ const Inputs = ({ title, setTitle, photo, setPhoto,tags,setSelectedTags,selected
         <br />
         {tags.map((tag) => {
           return (
-            <Tag tag={tag} handleClick={handleClick}/>
+            <Tag tag={tag} handleClick={handleClick} />
           );
         })}
       </section>
-  
+
       <p>
         Title:<span className="text-red-500 text-xl">*</span>
       </p>
