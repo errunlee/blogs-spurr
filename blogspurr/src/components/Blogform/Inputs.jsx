@@ -35,16 +35,16 @@ const Inputs = ({ title, setTitle, photo, setPhoto, tags, setTags, setSelectedTa
     <section>
       <div className="files flex flex-col mb-2">
         <label htmlFor="">Upload image</label>
-        <input onChange={(e) => handlePhotoChange(e)} type="file" />
+        <input type="file" accept="image/*" onChange={(e) => handlePhotoChange(e)}  />
       </div>
 
       <section className="tags">
         <span>Tags</span>
         <span className="text-red-500">*</span>
         <br />
-        {tags.map((tag) => {
+        {tags.map((tag,i) => {
           return (
-            <Tag tag={tag} handleClick={handleClick} />
+            <Tag id={i} tag={tag} handleClick={handleClick} />
           );
         })}
       </section>

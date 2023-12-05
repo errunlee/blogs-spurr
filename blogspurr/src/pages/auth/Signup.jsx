@@ -2,12 +2,18 @@
 
 import React from 'react'
 import Register from '../../components/Register'
-
+import { formVariant } from './Login'
+import { motion } from 'framer-motion'
 const Signup = () => {
   return (
-    <div>
+    <motion.div 
+    variants={formVariant}
+    initial='initial'
+    animate='final'
+    >
+
         <Register/>
-    </div>
+    </motion.div>
   )
 }
 

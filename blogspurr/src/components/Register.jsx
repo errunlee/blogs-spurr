@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import authService from "../firebase/auth";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signIn } from "../features/blogSlices";
 import { Formik, Field, ErrorMessage, Form } from "formik";
@@ -94,6 +94,8 @@ function Register() {
           >
             Create account
           </button>
+        <Link to='/login' className="underline">Already have an account?</Link>
+
         </Form>
       </Formik>
     </>

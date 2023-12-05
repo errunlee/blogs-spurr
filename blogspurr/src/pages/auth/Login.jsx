@@ -5,7 +5,18 @@ import { signIn, signUserOut } from "../../features/blogSlices";
 import { useNavigate } from "react-router";
 import Loginformik from "../../components/Loginformik";
 import BasicModal from "../../components/BasicModal";
+import {motion } from 'framer-motion'
 
+
+// for animation of this page
+export const formVariant={
+  initial:{
+    opacity:0
+  },
+  final:{
+    opacity:1
+  }
+}
 const Login = () => {
   const [loading,setLoading]=useState(false)
   const dispatch = useDispatch();
@@ -25,8 +36,15 @@ const Login = () => {
     navigate("/");
   }
 
+ 
   return (
-    <div className="mt-3">
+    <motion.div 
+    className="mt-3"
+    initial='initial'
+    animate='final'
+    variants={formVariant}
+    >
+
       <h1 className="text-center text-2xl font-mono text-slate-200">
         Login and start sharing your stories now!
       </h1>
@@ -43,7 +61,7 @@ const Login = () => {
         </button>
       </div>
       <BasicModal isLoading={loading}/>
-    </div>
+    </motion.div>
   );
 };
 

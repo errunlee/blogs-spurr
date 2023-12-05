@@ -10,6 +10,8 @@ import {
   doc,
   updateDoc,
   onSnapshot,
+  orderBy,
+  query,
 } from "firebase/firestore";
 
 export class DbService {
@@ -43,11 +45,11 @@ export class DbService {
   }
 
   async getAllBlogs() {
-    const querySnapshot = await getDocs(collection(db, "blogs"));
+    const q=query(collection(db,"blogs"),orderBy("postedAt","desc"))
+    const querySnapshot = await getDocs(q);
     const data = [];
     querySnapshot.forEach((doc) => {
       data.push({ ...doc.data(), id: doc.id });
-      console.log(`${doc.id} => ${doc.data()}`);
     });
     return data;
   }

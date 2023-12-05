@@ -23,7 +23,6 @@ const Toaster = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
       />
         
     </>

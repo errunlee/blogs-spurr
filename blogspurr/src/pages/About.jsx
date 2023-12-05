@@ -18,43 +18,58 @@ const About = () => {
     },
   };
 
-const childVariants = {
-  initial: {
-    opacity: 0,
-    y: "50px",
-  },
-  final: {
-    opacity: 1,
-    y: "0px",
-    transition: {
-      duration: 2,
-      delay: 1,
+  const childVariants = {
+    initial: {
+      y: '-50%',
+      x: '-50%',
+      scale:0
     },
-  },
-};
+    final: {
+      y: '-50%',
+      x: '-50%',
+      scale:1,
+      transition: {
+        delay: 0.2,
+        duration:0.5
+      },
+    },
+  };
+
   return (
     <motion.div
-    variants={routeVariants}
-    initial="initial"
-    animate="final"
-    className="home component"
-  >
+      variants={routeVariants}
+      initial="initial"
+      animate="final"
+      className="home component"
+    >
       <div className="about-wrapper relative">
         <div className="empty"></div>
         <div className="empty1"></div>
-        <div className="image absolute ">
-            <div className="flex justify-center">
-                <motion.h1 variants={childVariants} intial='intial' animate='final' className="text-5xl text-blue-500 font-mono mb-4">Sharing Stories!</motion.h1>
-            </div>
-            <img src={dpImg} alt="" className=" " />
-        </div>
+        <motion.div className="image absolute "
+          variants={childVariants}
+          animate='final'
+          initial='initial'
+        >
+          <div className="flex justify-center" >
+            <h1 className="text-5xl text-blue-500 font-mono mb-4 text-center">Sharing Stories!</h1>
+          </div>
+          <img src={dpImg} alt="" className=" " />
+        </motion.div>
       </div>
 
-      <div className="px-9 flex flex-col items-center text-center mt-7 text-lg ">
-        <h1 className="text-3xl font-black">
+      <div
+        className="px-9 flex flex-col items-center text-center mt-7 text-lg ">
+        <motion.h1
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, }}
+
+          className="text-3xl font-black">
           Welcome to Arun Khatri's Blog Hub!
-        </h1>
-        <p className="text-lg ">
+        </motion.h1>
+        <p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-lg ">
           Hello, and welcome to my blog hub! I'm Arun Khatri, a passionate
           learner,developer and tech enthusiast currently enrolled as a BCA
           student at Tribhuwan University. Here, you'll find an array of blogs

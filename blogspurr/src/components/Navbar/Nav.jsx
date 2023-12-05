@@ -2,7 +2,7 @@ import React from "react";
 import authService from "../../firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { signUserOut } from "../../features/blogSlices";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -21,14 +21,15 @@ const Navbar = () => {
   return (
     <div>
       <nav className="bg-gray-700 text-white p-3">
-        <ul className="flex justify-around">
+        <ul className="flex justify-around items-center">
           <li>
-            <Link to="/">Blogsspurr</Link>
+            <NavLink to="/" className="font-bold text-2xl text-yellow-400">Blogsspurr</NavLink>
           </li>
           <div className="flex gap-3">
-            <Link to='/'>Home</Link>
-            <Link to='/about'>About</Link>
-            <Link to='/create-blog'>Create Post</Link>
+            <NavLink className={({ isActive }) => (isActive ? 'text-slate-400 font-bold' : '')} to='/'>Home</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'text-slate-400 font-bold' : '')} to='/about'>About</NavLink>
+            <NavLink className={({ isActive }) => isActive ? 'text-slate-400 font-bold' : ''}
+              to='/create-blog'>Create Post</NavLink>
             {isLoggedIn ? (
               <button
                 className=""
@@ -36,9 +37,9 @@ const Navbar = () => {
               >
                 Logout
               </button>
-              
+
             ) : (
-              <Link to="/login"> Login </Link>
+              <NavLink className={({ isActive }) => isActive ? 'text-slate-400 font-bold' : ''} to="/login"> Login </NavLink>
             )}
           </div>
         </ul>

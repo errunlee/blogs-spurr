@@ -12,8 +12,6 @@ import Editpost from './pages/Editpost';
 
 function RoutesWithAnimation() {
     const location=useLocation();
-    console.log(location);
-
   return (
     <>
         <Routes location={location} key={location.key}>

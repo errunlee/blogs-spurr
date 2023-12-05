@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import dbService from "../../firebase/config";
 import { Link } from "react-router-dom";
 import BasicModal from "../BasicModal";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import "./blogs.css";
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -22,29 +22,16 @@ const Blogs = () => {
     getBlogs();
   }, []);
 
-  const childVariants = {
-    initial: {
-      opacity: 0,
-      y: "50px",
-    },
-    final: {
-      opacity: 1,
-      y: "0px",
-      transition: {
-        duration: 0.5,
-        delay: 0.5,
-      },
-    },
-  };
+
   return (
     <>
       <BasicModal isLoading={loading} />
 
-      <motion.div variants={childVariants} initial='initial' animate='final' className="flex flex-col px-[5rem] items-center">
+      <div
+        className="flex flex-col px-[5rem] items-center"
+      >
         {blogs.length > 0 &&
-          blogs.map((blog) => {
-            const content = blog.blog.slice(1, 50);
-
+          blogs.map((blog,i) => {
             const postedAtinSec = blog?.postedAt?.seconds;
             const postedAt = new Date(postedAtinSec * 1000).toLocaleString();
             const noImage =
@@ -52,33 +39,41 @@ const Blogs = () => {
             const { selectedTags } = blog;
 
             return (
-              <Link
-              variants={childVariants} initial='initial' animate='final'
-                to={`/viewblog/${blog.id}`}
-                key={blog.id}
-                className="blog-item m-3 rounded my-2 p-4 shadow-lg  transition-all pb-9 w-full hover:-translate-y-2"
+              <motion.div
+                key={i}
+                className="blog-item w-full  m-3 rounded my-2  shadow-lg  transition-all hover:-translate-y-2 "
+                whileHover={{ scale: 1.02 }}
+                initial={{ scale: 0.9 }}
+                whileTap={{ scale: 0.97 }}
+                whileInView={{ scale: 1, transition: { duration: 0.1, delay: 0.1 } }}
+                viewport={{ once: true }}
               >
-                <section className="tags mb-3">
-                  <span>Posted in </span>
-                  {selectedTags.map((tag) => {
-                    return <span className="bg-yellow-300 px-3 py-2 rounded text-slate-700 m-1">{tag.name}</span>
-                  })}
-                </section>
-                
-                <div className="flex items-center  gap-3 mb-4">
-                  <img
-                    className="rounded aspect-square h-[60px] w-[60px]"
-                    src={blog.image || noImage}
-                    alt="poster"
-                  />
-                  <h1 className="text-2xl font-bold">{blog.title}</h1>
-                </div>
-                <span className="text-[#737373]">Posted on {postedAt}</span>
-              </Link>
+                <Link
+                  to={`/viewblog/${blog.id}`}
+                  className="block w-full h-full border p-4  pb-9"
+                >
+                  <section className="tags mb-3">
+                    <span>Posted in </span>
+                    {selectedTags.map((tag) => {
+                      return <span
+                        className="bg-yellow-300 px-3 py-2 rounded text-slate-700 m-1">{tag.name}</span>
+                    })}
+                  </section>
 
+                  <div className="flex items-center  gap-3 mb-4">
+                    <img
+                      className="rounded aspect-square h-[60px] w-[60px]"
+                      src={blog.image || noImage}
+                      alt="poster"
+                    />
+                    <h1 className="text-2xl font-bold">{blog.title}</h1>
+                  </div>
+                  <span className="text-[#737373]">Posted on {postedAt}</span>
+                </Link>
+              </motion.div>
             );
           })}
-      </motion.div>
+      </div>
     </>
   );
 };
