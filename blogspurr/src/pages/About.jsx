@@ -58,12 +58,12 @@ const About = () => {
       </div>
 
       <div
-        className="px-9 flex flex-col items-center text-center mt-7 text-lg ">
+        className="px-6 flex flex-col items-center text-justify mt-7 text-lg lg:px-[6rem] lg:text-center">
         <motion.h1
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1, }}
 
-          className="text-3xl font-black">
+          className="text-3xl font-black leading-9">
           Welcome to Arun Khatri's Blog Hub!
         </motion.h1>
         <p
@@ -76,7 +76,7 @@ const About = () => {
           covering various topics, news, inspirational experiences, and
           programming insights.
         </p>
-        <h1 className="text-3xl mt-3">About Me</h1>
+        <h1 className="text-3xl mt-8 leading-9">About Me</h1>
         <p>
           As a student and an enthusiast of the tech world, I am fervent about
           sharing my experiences and insights. Through my blog, I aspire to
@@ -85,25 +85,7 @@ const About = () => {
           technology or drawing inspiration from people's journeys, this space
           is designed to connect and engage with readers like you.
         </p>
-        <h1 className="text-3xl mt-3">Connect with Me</h1>
-        <p>
-          Your suggestions and thoughts matter greatly to me! If you have any
-          questions, suggestions, or simply want to connect, please don't
-          hesitate to drop me an email at [errunnp@gmail.com]. I'm always eager
-          to engage in discussions and value your input.
-        </p>
-        <h1 className="text-3xl mt-3">Join the Community</h1>
-        <p>
-          Stay updated with the latest content by following me on [mention any
-          social media platforms you're active on]. Join our community of
-          passionate readers and tech enthusiasts to stay connected and be part
-          of the conversation.
-        </p>
-        Thank you for visiting my blog hub and being part of this journey. I'm
-        thrilled to have you here and hope you find inspiration, knowledge, and
-        connection through the diverse range of blogs shared.
-        <h1 className="text-5xl mt-4">Happy reading!
-        </h1>
+      
       </div>
     </motion.div>
   );

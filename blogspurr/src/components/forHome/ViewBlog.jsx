@@ -25,7 +25,7 @@ function ViewBlog({ blogData }) {
   return (
     <div className=" mt-3">
       <BasicModal isLoading={loading}></BasicModal>
-      <img className=" h-[400px]" src={blogData.image || noImage} alt="" />
+      <img className="max-h-[400px]" src={blogData.image || noImage} alt="" />
 
 <div className="flex items-center">
   Tags

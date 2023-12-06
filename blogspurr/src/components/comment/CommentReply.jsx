@@ -35,7 +35,7 @@ function CommentReply({ id, setIsReplying, comments, docId, replyTo }) {
       ></input>
       <button
         onClick={postReply}
-        className="mx-1 bg-blue-200 rounded px-2 py-1 text-black"
+        className="mx-1 mt-2 bg-blue-200 rounded px-2 py-1 text-black"
       >
         Reply
       </button>

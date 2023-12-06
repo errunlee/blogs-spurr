@@ -10,7 +10,7 @@ export default function Foot(){
     <footer>
     <div className='top-footer text-white mt-5 text-center'>   
     </div>
-      <div className='last-footer flex justify-around text-white p-5 pb-2'>
+      <div className='last-footer flex text-white p-5 pb-2 flex-col text-center lg:flex-row lg:justify-around lg:text-start'>
         <div className='logo'>
           <h2 className='text-3xl'>Blogspurr</h2>
         </div>
@@ -28,7 +28,7 @@ export default function Foot(){
               )
             })
           }
-        <div className='social flex'>
+        <div className='social flex sm:justify-center'>
         <img src={facebook} fill='red'></img>
         <img src={insta}></img>
         <img src={pinterest}></img>

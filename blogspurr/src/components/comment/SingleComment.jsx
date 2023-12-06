@@ -13,15 +13,15 @@ function SingleComment({ data,comments ,docId}) {
 
   return (
     <>
-      <div className="transition-all border-2 rounded p-3 w-1/2 grid grid-cols-10 bg-slate-800 my-2 items-start">
-        <p className="dp h-[40px] w-[40px] rounded-full bg-white col-span-1">
+      <div className="transition-all border-2 rounded p-3 lg:w-1/2 w-full grid grid-cols-10 bg-slate-800 my-2 items-start text-sm lg:text-md">
+        <p className="dp h-[40px] w-[40px] rounded-full bg-white col-span-2 lg:col-span-1">
           <img className="rounded-full" src={noDp} />
         </p>
-        <div className="flex items-start flex-col col-span-7">
+        <div className="flex items-start flex-col col-span-6 lg:col-span-7">
           <p className="capitalize font-black text-yellow-500 m-0">
             {commentedBy}
           </p>
-          <p className="m-0 text-lg">{comment}</p>
+          <p className="m-0 text-sm lg:text-lg">{comment}</p>
           <div className="replies mt-2">
             <CommentReplies replies={replies}/>
           </div>

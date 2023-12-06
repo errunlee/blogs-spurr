@@ -36,7 +36,7 @@ const childVariants = {
     animate="final"
     className="home component"
   >
-      <h1  className="text-4xl my-4 mx-[5rem]">Top blogs</h1>
+      <h1  className="lg:text-4xl text-2xl my-4 lg:mx-[5rem] mx-5">Latest blogs</h1>
       {isLoggedIn ? <Blogs /> : <NotLoggedIn />}
     </motion.div>
   );

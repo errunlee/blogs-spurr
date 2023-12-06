@@ -13,3 +13,14 @@ body {
 footer {
   margin-top: auto;
 }
+
+.tox-tinymce{
+  width: 90% !important;
+  height:75vh;
+}
+
+@media only screen and (max-width: 400px) {
+.tox-tinymce{
+  height:50vh !important;
+}
+}

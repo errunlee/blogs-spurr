@@ -28,10 +28,10 @@ const Blogs = () => {
       <BasicModal isLoading={loading} />
 
       <div
-        className="flex flex-col px-[5rem] items-center"
+        className="flex flex-col lg:px-[5rem] px-5 items-center"
       >
         {blogs.length > 0 &&
-          blogs.map((blog,i) => {
+          blogs.map((blog, i) => {
             const postedAtinSec = blog?.postedAt?.seconds;
             const postedAt = new Date(postedAtinSec * 1000).toLocaleString();
             const noImage =
@@ -53,10 +53,10 @@ const Blogs = () => {
                   className="block w-full h-full border p-4  pb-9"
                 >
                   <section className="tags mb-3">
-                    <span>Posted in </span>
+                    <span className="text-sm lg:text-md">Posted in </span>
                     {selectedTags.map((tag) => {
                       return <span
-                        className="bg-yellow-300 px-3 py-2 rounded text-slate-700 m-1">{tag.name}</span>
+                        className="bg-yellow-300 px-1 lg:px-3 lg:py-2 rounded text-slate-700 m-1">{tag.name}</span>
                     })}
                   </section>
 
@@ -66,7 +66,7 @@ const Blogs = () => {
                       src={blog.image || noImage}
                       alt="poster"
                     />
-                    <h1 className="text-2xl font-bold">{blog.title}</h1>
+                    <h1 className="lg:text-2xl text-xl font-bold">{blog.title}</h1>
                   </div>
                   <span className="text-[#737373]">Posted on {postedAt}</span>
                 </Link>

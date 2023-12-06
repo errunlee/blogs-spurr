@@ -45,7 +45,7 @@ const Login = () => {
     variants={formVariant}
     >
 
-      <h1 className="text-center text-2xl font-mono text-slate-200">
+      <h1 className="text-center text-2xl  text-slate-200">
         Login and start sharing your stories now!
       </h1>
       <div className="login">
@@ -54,7 +54,7 @@ const Login = () => {
       <div className="flex justify-center">
 
         <button
-          className="bg-yellow-500 rounded px-4 py-3 text-slate-800 "
+          className="bg-slate-700 text-white rounded px-4 py-3 "
           onClick={handleLogin}
         >
           Login with Google

@@ -128,15 +128,14 @@ export default function TinyMCE({
   return (
     <>
       <Toaster />
-      <main className="grid grid-cols-10">
-        <section className=" col-span-7">
+      <main className="grid grid-cols-10 items-center">
+        <section className=" col-span-10 flex justify-center lg:col-span-7">
 
           <Editor
             apiKey="hiyi55219jowbez4et4l15xk73k2wh14bdeio77aave8j5k5"
             onInit={(evt, editor) => (editorRef.current = editor)}
             initialValue={initialValue}
             init={{
-              height: 500,
               menubar: false,
               plugins: [
                 "advlist",
@@ -164,14 +163,15 @@ export default function TinyMCE({
                 "removeformat | help",
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-              width: "90%",
               resize: false,
               auto_focus: "elm1",
             }}
           />
         </section>
 
-        <div className=" col-span-3">
+
+        <div className="col-span-10 lg:col-span-3 ">
+          <div className="w-[90%] mx-auto">
           <Inputs
             title={title}
             setTitle={setTitle}
@@ -213,6 +213,7 @@ export default function TinyMCE({
           <BasicModal isLoading={loading}
 
           />
+          </div>
         </div>
       </main>
     </>
