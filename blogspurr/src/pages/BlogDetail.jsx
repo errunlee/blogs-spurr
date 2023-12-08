@@ -20,6 +20,7 @@ function BlogDetail() {
     navigate('/login')
   }
   useEffect(() => {
+    window.scrollTo({top:0})
     setLoading(true)
     const docRef = doc(db, "blogs", id);
 
@@ -43,6 +44,8 @@ function BlogDetail() {
     return;
   }
   const comments = blogData.comments || [];
+  
+  document.title=`${blogData.title} | Blogspurr`
 
   const childVariants = {
     initial: {

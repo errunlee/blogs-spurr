@@ -15,9 +15,12 @@ const Create = () => {
       }
     }
   }
+
+  document.title="Create new post | Blogspurr"
+  
   return (
     <div className='p-3 flex gap-2'>
-      <motion.div
+      <motion.div className='w-full'
         variants={childVariants}
         initial='initial'
         animate='final'

@@ -29,6 +29,7 @@ const childVariants = {
   },
 };
 
+document.title="Blogspurr | Home"
   return (
     <motion.div
     variants={routeVariants}

@@ -5,6 +5,8 @@ import Register from '../../components/Register'
 import { formVariant } from './Login'
 import { motion } from 'framer-motion'
 const Signup = () => {
+  document.title="Blogspurr | Sign Up"
+
   return (
     <motion.div 
     variants={formVariant}

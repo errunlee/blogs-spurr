@@ -29,7 +29,8 @@ export default function Editpost() {
     }
 
     const { title, blog, selectedTags } = blogData;
-    console.log(blogData);
+
+    document.title=`${title} | Edit`
     return (
         <>
             {

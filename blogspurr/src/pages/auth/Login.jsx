@@ -18,6 +18,9 @@ export const formVariant={
   }
 }
 const Login = () => {
+
+  document.title="Blogspurr | Login"
+
   const [loading,setLoading]=useState(false)
   const dispatch = useDispatch();
 

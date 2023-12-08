@@ -5,6 +5,10 @@ import { motion } from "framer-motion";
 
 const About = () => {
 
+  window.scrollTo({top:0,scrollBehaviour:'smooth'})
+  document.title='Blogspurr | About '
+
+  
   const routeVariants = {
     initial: {
       y: "100vh",
