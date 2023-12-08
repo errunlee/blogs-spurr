@@ -16,10 +16,10 @@ footer {
 
 .tox-tinymce{
   width: 90% !important;
-  height:75vh;
+  height:75vh !important;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (width<=700px) {
 .tox-tinymce{
   height:50vh !important;
 }

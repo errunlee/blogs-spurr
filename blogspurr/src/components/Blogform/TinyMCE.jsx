@@ -128,7 +128,7 @@ export default function TinyMCE({
   return (
     <>
       <Toaster />
-      <main className="grid grid-cols-10 items-center">
+      <main className="grid grid-cols-10 items-start">
         <section className=" col-span-10 flex justify-center lg:col-span-7">
 
           <Editor
