@@ -1,15 +1,27 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import authService from "../../firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { signUserOut } from "../../features/blogSlices";
 import { NavLink, useNavigate } from "react-router-dom";
 import './Navbar.css'
 const Navbar = () => {
-
   const navRef = useRef(null)
+
+  const [isOpen, setIsOpen] = useState(false)
+
   const switchShowNav = () => {
-    navRef.current.classList.toggle('show')
+    // navRef.current.classList.toggle('show')
+    setIsOpen(!isOpen)
   }
+
+  useEffect(()=>{
+    if(isOpen){
+      document.body.style.overflow='hidden'
+    }
+    else{
+      document.body.style.overflow = 'unset';
+    }
+  },[isOpen])
 
 
   const isLoggedIn = useSelector((state) => state.user);
@@ -28,15 +40,15 @@ const Navbar = () => {
       <nav className="bg-gray-700 text-white p-3">
         <ul className="flex justify-around items-center">
           <li>
-            <NavLink  to="/" className="font-bold text-2xl text-yellow-400">Blogsspurr</NavLink>
+            <NavLink to="/" className="font-bold text-2xl text-yellow-400">Blogsspurr</NavLink>
           </li>
           <div className="flex gap-3 items-center ">
-            <div ref={navRef} className={`flex  gap-3  nav-links items-center justify-center`}>
+            <div ref={navRef} className={`flex  gap-3  nav-links items-center justify-center ${isOpen?'show':''}`}>
               <NavLink onClick={switchShowNav} className={({ isActive }) => (isActive ? 'text-slate-400 font-bold' : '')} to='/'>Home</NavLink>
               <NavLink onClick={switchShowNav} className={({ isActive }) => (isActive ? 'text-slate-400 font-bold' : '')} to='/about'>About</NavLink>
               <NavLink onClick={switchShowNav} className={({ isActive }) => isActive ? 'text-slate-400 font-bold' : ''}
                 to='/create-blog'>Create Post</NavLink>
-                <img onClick={switchShowNav} className="close-btn" width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/multiply.png" alt="multiply"/>
+              <img onClick={switchShowNav} className="close-btn" width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/multiply.png" alt="multiply" />
             </div>
 
             {isLoggedIn ? (
