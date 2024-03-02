@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import authService from "../firebase/auth";
-import { auth } from "../firebase";
+import authService from "../services/auth";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signIn } from "../features/blogSlices";

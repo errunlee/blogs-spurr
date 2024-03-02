@@ -2,8 +2,7 @@ import { Formik, Field, ErrorMessage, Form } from "formik";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import authService from "../firebase/auth";
-import { auth } from "../firebase";
+import authService from "../services/auth";
 import Toaster, { notify } from "./Blogform/Toaster";
 import { signIn } from "../features/blogSlices";
 

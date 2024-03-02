@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import dbService from "../../firebase/config";
+import dbService from "../../services/config";
 import { useDispatch, useSelector } from "react-redux";
-import authService from "../../firebase/auth";
 import { replyToComment } from "../../features/blogSlices";
 
 function CommentReply({ id, setIsReplying, comments, docId, replyTo }) {

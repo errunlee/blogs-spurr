@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import dbService from "../../firebase/config";
+import dbService from "../../services/config";
 import Toaster from "../Blogform/Toaster";
 import { toast } from "react-toastify";
-import BasicModal from "../BasicModal";
 import { useDispatch, useSelector } from "react-redux";
-import { serverTimestamp } from "firebase/firestore";
 import { addCommentRed } from "../../features/blogSlices";
 
 function InputComment({ comments, id }) {

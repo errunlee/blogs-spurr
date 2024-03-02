@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import authService from "../../firebase/auth";
-import { signIn, signUserOut } from "../../features/blogSlices";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import Loginformik from "../../components/Loginformik";
 import BasicModal from "../../components/BasicModal";
@@ -28,13 +26,6 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    setLoading(true)
-    // const user = await authService.loginWithGoogle();
-    // dispatch(signIn(user));
-    setLoading(false)
-  };
-
   useEffect(() => {
 
     if (isLoggedIn) {
@@ -56,15 +47,6 @@ const Login = () => {
       </h1>
       <div className="login">
         <Loginformik setLoading={setLoading} />
-      </div>
-      <div className="flex justify-center">
-
-        <button
-          className="bg-slate-700 text-white rounded px-4 py-3 "
-          onClick={handleLogin}
-        >
-          Login with Google
-        </button>
       </div>
       <BasicModal isLoading={loading} />
     </motion.div>

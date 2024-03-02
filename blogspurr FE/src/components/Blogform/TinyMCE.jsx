@@ -3,10 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { Editor } from '../../../node_modules/@tinymce/tinymce-react'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import dbService from "../../firebase/config";
+import dbService from "../../services/config";
 import Toaster from "./Toaster";
 import Inputs from "./Inputs";
-import { storageService } from "../../firebase/storage";
+import { storageService } from "../../services/storage";
 import { useDispatch, useSelector } from "react-redux";
 import BasicModal from "../BasicModal";
 import { useNavigate } from "react-router-dom";
