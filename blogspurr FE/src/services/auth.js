@@ -1,14 +1,3 @@
-import {
-  signInWithPopup,
-  onAuthStateChanged,
-  signOut,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signInWithEmailAndPassword,
-  // getUser
-} from "firebase/auth";
-
-import { auth, provider } from "../firebase";
 import axios from "axios";
 
 export class AuthService {

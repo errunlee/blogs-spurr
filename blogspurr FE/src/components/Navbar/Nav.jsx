@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import authService from "../../firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { signUserOut } from "../../features/blogSlices";
 import { NavLink, useNavigate } from "react-router-dom";
+import authService from '../../services/auth'
 import './Navbar.css'
 const Navbar = () => {
   const navRef = useRef(null)

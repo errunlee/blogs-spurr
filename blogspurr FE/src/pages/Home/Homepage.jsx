@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import Blogs from "../../components/forHome/Blogs";
-import NotLoggedIn from "../../components/forHome/NotLoggedIn";
 import { motion } from "framer-motion";
 const Homepage = () => {
-  const isLoggedIn = useSelector((state) => state.user);
   const routeVariants = {
     initial: {
       y: '100vh'
@@ -40,7 +37,7 @@ const Homepage = () => {
     >
       <h1 className="lg:text-4xl text-2xl my-4 lg:mx-[5rem] mx-5">Latest blogs </h1>
 
-      {isLoggedIn ? <Blogs /> : <NotLoggedIn />}
+       <Blogs />
     </motion.div>
   );
 };

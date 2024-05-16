@@ -5,8 +5,9 @@ const Blogs = require("../models/Blogs");
 const { body, validationResult } = require("express-validator");
 
 //fetch notes from db
-router.get("/fetchallnotes", fetcuser, async (req, res) => {
-  const blogs = await Blogs.find();
+router.get("/fetchallnotes", async (req, res) => {
+  console.log("req");
+  const blogs = await Blogs.find().sort({ postedAt: -1 });
   res.json(blogs);
 });
 

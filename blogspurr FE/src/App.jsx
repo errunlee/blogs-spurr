@@ -3,8 +3,7 @@ import "./App.css";
 import { useDispatch } from "react-redux";
 import { addBlog, signIn } from "./features/blogSlices";
 import Homepage from "./pages/Home/Homepage";
-import authService from "./firebase/auth";
-import { signOut } from "firebase/auth";
+// import { signOut } from "firebase/auth";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import Navbar from "./components/Navbar/Nav";
@@ -17,6 +16,7 @@ import Editpost from "./pages/Editpost";
 import { AnimatePresence } from "framer-motion";
 import RoutesWithAnimation from "./RoutesWithAnimation";
 import LocationProvider from "./LocationProvider";
+import authService from "./services/auth";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();

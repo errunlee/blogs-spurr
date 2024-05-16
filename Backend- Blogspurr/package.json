@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "notebook app in the cloud",
   "main": "index.js",
-  "engines":{
-    "node":"14.x"
+  "engines": {
+    "node": "14.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon index.js",
-    "start":"node index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +25,6 @@
     "mongoose": "^6.8.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.22"
   }
 }

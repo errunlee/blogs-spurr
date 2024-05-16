@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { db } from '../firebase';
 import { onSnapshot, doc } from "firebase/firestore";
 import TinyMCE from '../components/Blogform/TinyMCE';
 import BasicModal from '../components/BasicModal';

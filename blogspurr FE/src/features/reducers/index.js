@@ -17,6 +17,7 @@ export const getBlogs = (state, action) => {
 
 export const login = (state, action) => {
   console.log("loggigin in ", action.payload);
+  localStorage.setItem("user", JSON.stringify(action.payload));
   state.user = action.payload;
 };
 

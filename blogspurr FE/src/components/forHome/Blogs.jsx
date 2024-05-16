@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import dbService from "../../firebase/config";
+
 import { Link } from "react-router-dom";
 import BasicModal from "../BasicModal";
 import { motion, useScroll } from "framer-motion";
 import "./blogs.css";
 import { useDispatch, useSelector } from "react-redux";
 import { readBlogs } from '../../features/blogSlices'
+import dbService from "../../services/config";
 const Blogs = () => {
   // const [blogs, setBlogs] = useState([]);
   const blogs = useSelector(state => state.blogs)
   const [loading, setLoading] = useState(false);
-
-
-
 
   const dispatch = useDispatch()
   const getBlogs = async () => {
@@ -28,7 +26,6 @@ const Blogs = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
-    if (blogs.length == 0)
       getBlogs();
   }, []);
 

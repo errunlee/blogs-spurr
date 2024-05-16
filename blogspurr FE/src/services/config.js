@@ -1,17 +1,3 @@
-import { auth, db } from "../firebase";
-import {
-  collection,
-  addDoc,
-  getDocs,
-  deleteDoc,
-  getDoc,
-  serverTimestamp,
-  doc,
-  updateDoc,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore";
 import api from "../api/instance.js";
 import { addCommentRed } from "../features/blogSlices.js";
 import { useDispatch } from "react-redux";

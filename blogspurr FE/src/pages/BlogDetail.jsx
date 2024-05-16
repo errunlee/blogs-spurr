@@ -3,7 +3,6 @@ import ViewBlog from "../components/forHome/ViewBlog";
 import Comments from "../components/comment/Comments";
 import { useNavigate, useParams } from "react-router-dom";
 import { onSnapshot, doc } from "firebase/firestore";
-import { db } from "../firebase";
 import EditDelete from "../components/forHome/EditDelete";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";

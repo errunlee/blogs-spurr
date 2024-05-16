@@ -1,10 +1,8 @@
-import { storage } from "../firebase";
-import { Timestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 class StorageService {
   async uploadImage(file) {
-    if(file===null){
+    if (file === null) {
       return null;
     }
     const timestamp = new Date().getTime(); // Generate a timestamp
