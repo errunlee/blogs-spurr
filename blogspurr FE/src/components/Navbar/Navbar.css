@@ -1,0 +1,42 @@
+
+
+.nav-links a{
+border-bottom:2px solid transparent;
+transition: 0.5s all;
+}
+.nav-links a:hover{
+    border-bottom:2px solid #6d6969;
+}
+
+.close-btn{
+    display: none;
+}
+
+@media only screen and (width<=700px){
+    .nav-links{
+        display: flex;
+        position:fixed;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        gap:0.7rem;
+        background-color: red;
+        font-size: 1.3rem;
+        z-index: 1000;
+        transition: 0.4s all; 
+        transform: translateX(100%);
+        top:0;
+        left:0;
+        background-color:#efbdef;
+        color:black
+    }
+    .show{
+        transform: translateX(0);
+    }
+    .close-btn{
+        position:absolute;
+        top:1rem;
+        right:1rem;
+        display: block;
+    }
+}

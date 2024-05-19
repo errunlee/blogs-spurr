@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap");
+body {
+  background-color: rgb(15, 23, 42);
+  color: white !important;
+  font-family: "Roboto", sans-serif;
+  overflow: auto !important;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+footer {
+  margin-top: auto;
+}
+
+.tox-tinymce {
+  width: 90% !important;
+  height: 75vh !important;
+}
+
+@media only screen and (width<=700px) {
+  .tox-tinymce {
+    height: 50vh !important;
+  }
+}
