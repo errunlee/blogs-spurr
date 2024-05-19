@@ -16,10 +16,13 @@ const validationSchema = Yup.object({
   password: Yup.string()
     .required("This field is required")
     .min(8, "at least 8"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password")], "Passwords must match")
+    .required("This field is required"),
 });
 
 function Register() {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -32,13 +35,13 @@ function Register() {
   };
 
   const handleSubmit = async (values) => {
-    setLoading(true)
+    setLoading(true);
     const isCreated = await authService.registerWithEmailPassword(
       values.fullName,
       values.email,
       values.password
     );
-    console.log(isCreated)
+    console.log(isCreated);
     if (isCreated.ok) {
       const user = await authService.getUser();
       dispatch(signIn(user));
@@ -46,13 +49,15 @@ function Register() {
     } else {
       alert("failed to create account" + isCreated);
     }
-    setLoading(false)
+    setLoading(false);
   };
 
   return (
     <>
       <BasicModal isLoading={loading} />
-      <h1 className="text-3xl my-3 font-mono text-slate-300 font-bold text-center">Join thousands of bloggers from all over the world now!</h1>
+      <h1 className="text-3xl my-3 font-mono text-slate-300 font-bold text-center">
+        Join thousands of bloggers from all over the world now!
+      </h1>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -87,6 +92,15 @@ function Register() {
           <p className="text-red-500 mb-3">
             <ErrorMessage name="password" />
           </p>
+          <Field
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm assword"
+            className="px-3 py-2 bg-gray-300 text-black "
+          />
+          <p className="text-red-500 mb-3">
+            <ErrorMessage name="confirmPassword" />
+          </p>
 
           <button
             className="bg-yellow-700 px-4 py-3 rounded hover:bg-yellow-600"
@@ -94,8 +108,9 @@ function Register() {
           >
             Create account
           </button>
-          <Link to='/login' className="underline">Already have an account?</Link>
-
+          <Link to="/login" className="underline">
+            Already have an account?
+          </Link>
         </Form>
       </Formik>
     </>

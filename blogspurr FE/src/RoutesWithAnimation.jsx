@@ -12,6 +12,7 @@ import ManageUsers from "./pages/Admin/ManageUsers";
 import Reports from "./pages/Admin/Reports";
 import ViewBlog from "./components/forHome/ViewBlog";
 import { useSelector } from "react-redux";
+import ViewUser from "./pages/Admin/ViewUser";
 
 function RoutesWithAnimation({ role }) {
   const location = useLocation();
@@ -32,7 +33,9 @@ function RoutesWithAnimation({ role }) {
         <Route path="/edit-post/:id" element={<Editpost />} />
         {role == "ADMIN" && (
           <Route path="/admin/dashboard/*" element={<Dashboard />}>
-            <Route path="manageusers" element={<ManageUsers />} />
+            <Route path="manageusers" element={<ManageUsers />}></Route>
+            <Route path="user/:id" element={<ViewUser />} />
+
             <Route path="reports" element={<Reports />} />
           </Route>
         )}

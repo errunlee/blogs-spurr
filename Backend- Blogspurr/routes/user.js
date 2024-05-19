@@ -8,8 +8,20 @@ const Reported = require("../models/Report");
 //fetch notes from db
 router.get("/getAllUsers", fetcuser, async (req, res) => {
   console.log("req");
-  const blogs = await Users.find();
-  res.json(blogs);
+  const users = await Users.find();
+  res.json(users);
+});
+
+router.get("/getUserById/:id", async (req, res) => {
+  const id = req.params.id;
+  const user = await Users.findById(id);
+  res.json(user);
+});
+
+router.delete("/deleteUser/:id", async (req, res) => {
+  const id = req.params.id;
+  const user = await Users.findByIdAndDelete(id);
+  res.json(user);
 });
 
 router.get("/getreports", fetcuser, async (req, res) => {

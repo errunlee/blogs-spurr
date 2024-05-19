@@ -8,6 +8,16 @@ export class AdminService {
     return res?.data;
   }
 
+  async getUserById(id) {
+    const res = await instance.get(`/users/getUserById/${id}`);
+    return res?.data;
+  }
+
+  async deleteUser(id) {
+    const res = await instance.delete(`/users/deleteUser/${id}`);
+    return res?.data;
+  }
+
   async reportBlog(id, payload) {
     const res = await instance.post(
       `http://localhost:5000/api/users/report/${id}`,
