@@ -22,6 +22,9 @@ export const login = (state, action) => {
 };
 
 export const logout = (state) => {
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+
   state.user = null;
 };
 

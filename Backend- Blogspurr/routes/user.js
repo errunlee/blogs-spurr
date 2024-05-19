@@ -15,7 +15,14 @@ router.get("/getAllUsers", fetcuser, async (req, res) => {
 router.get("/getUserById/:id", async (req, res) => {
   const id = req.params.id;
   const user = await Users.findById(id);
-  res.json(user);
+
+  const report = await Reported.find({ uid: id });
+  let noOfReports = 0;
+  report?.map((each) => {
+    noOfReports += each?.timesReported;
+  });
+
+  res.json({ user, noOfReports });
 });
 
 router.delete("/deleteUser/:id", async (req, res) => {

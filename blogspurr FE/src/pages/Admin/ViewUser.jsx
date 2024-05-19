@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import adminService from "../../services/admin";
 import { useNavigate, useParams } from "react-router-dom";
 import ConfirmDialog from "../../../src/components/ConfirmDialog";
+import Toaster, { notify } from "../../components/Blogform/Toaster";
 const ViewUser = () => {
   const { id } = useParams();
-  const [user, setUser] = React.useState({});
+  const [user1, setUser] = React.useState({});
 
   const [open, setOpen] = useState(false);
   const [agree, setAgree] = useState(false);
@@ -21,7 +22,10 @@ const ViewUser = () => {
   const deleteFunc = async () => {
     try {
       await adminService.deleteUser(id);
-      navigate("/");
+      notify("User banned successfully");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
       console.log(error);
     } finally {
@@ -30,7 +34,6 @@ const ViewUser = () => {
 
   useEffect(() => {
     if (agree) {
-      console.log("agred");
       deleteFunc();
     } else {
       setOpen(false);
@@ -41,33 +44,34 @@ const ViewUser = () => {
     setOpen(true);
   };
 
-  const { name, email, date } = user;
-
+  const { user } = user1;
+  debugger;
   if (!user) return;
   return (
     <div className="flex flex-col items-start gap-2">
+      <Toaster />
       <h1 className="text-lg ">
         {" "}
         You are viewing details of{" "}
-        <span className="font-bold text-yellow-500">{name}</span>
+        <span className="font-bold text-yellow-500">{user?.name}</span>
       </h1>
       <div className="flex flex-col border p-3">
         <p>
           {" "}
-          Name: <strong className="text-yellow-600">{name}</strong>
+          Name: <strong className="text-yellow-600">{user?.name}</strong>
         </p>
         <p>
           {" "}
-          Email: <strong className="text-yellow-600">{email}</strong>
+          Email: <strong className="text-yellow-600">{user?.email}</strong>
         </p>
         <p>
           {" "}
           Account Created At:{" "}
-          <strong className="text-yellow-600">{date}</strong>{" "}
+          <strong className="text-yellow-600">{user?.date}</strong>{" "}
         </p>
         <h1>
           Blogs posted by USER1 has been report{" "}
-          <h1 className="text-xl inline font-bold">9 </h1>
+          <h1 className="text-xl inline font-bold">{user1?.noOfReports} </h1>
           times
         </h1>
       </div>

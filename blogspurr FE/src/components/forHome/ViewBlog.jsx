@@ -6,6 +6,7 @@ import adminService from "../../services/admin";
 import ConfirmDialog from "../ConfirmDialog";
 import { useSelector } from "react-redux";
 import dbService from "../../services/config";
+import { notify } from "../Blogform/Toaster";
 function ViewBlog({ blogData }) {
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -53,8 +54,11 @@ function ViewBlog({ blogData }) {
       } else {
         reportFunc();
       }
+      notify("Blog deleted successfully");
       setOpen(false);
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } else {
       setOpen(false);
     }
