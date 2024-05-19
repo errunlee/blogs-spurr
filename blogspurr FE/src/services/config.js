@@ -5,7 +5,7 @@ export class DbService {
   async addBlog(
     title,
     blog,
-    image,
+    photo,
     postedBy,
     comments = [],
     selectedTags = []
@@ -17,7 +17,7 @@ export class DbService {
       const res = await api.post("/notes/addblog", {
         title,
         blog,
-        image,
+        photo,
         postedBy,
         comments,
         selectedTags,

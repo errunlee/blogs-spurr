@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 // import { Editor } from "@tinymce/tinymce-react";
-import { Editor } from '../../../node_modules/@tinymce/tinymce-react'
+import { Editor } from "../../../node_modules/@tinymce/tinymce-react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import dbService from "../../services/config";
@@ -11,21 +11,21 @@ import { useDispatch, useSelector } from "react-redux";
 import BasicModal from "../BasicModal";
 import { useNavigate } from "react-router-dom";
 import { tags as tagArray } from "./tags";
-import { addBlog } from '../../features/blogSlices'
+import { addBlog } from "../../features/blogSlices";
 export default function TinyMCE({
   editing = false,
-  previousVal = '',
-  previousTitle = '',
+  previousVal = "",
+  previousTitle = "",
   prevTags = [],
-  docId = null
+  docId = null,
 }) {
   const [title, setTitle] = useState("");
-  const [photo, setPhoto] = useState(null);
+  const [photo, setPhoto] = useState("");
   const [loading, setLoading] = useState(false);
   const [tags, setTags] = useState(tagArray);
   const [selectedTags, setSelectedTags] = useState([]);
-  const [isEditing, setIsEditing] = useState(false)
-  const [initialValue, setInitialValue] = useState('')
+  const [isEditing, setIsEditing] = useState(false);
+  const [initialValue, setInitialValue] = useState("");
 
   const notify = (status) => toast(status);
 
@@ -36,9 +36,9 @@ export default function TinyMCE({
   const editorRef = useRef(null);
 
   useEffect(() => {
-    let newArray = tagArray.map(obj => ({ ...obj, isSelected: false }));
-    setTags(newArray)
-  }, [])
+    let newArray = tagArray.map((obj) => ({ ...obj, isSelected: false }));
+    setTags(newArray);
+  }, []);
 
   //   add blog to db
   const handleAddBlog = async () => {
@@ -61,12 +61,13 @@ export default function TinyMCE({
     }
 
     setLoading(true);
-    const getPhotoUrl = await storageService.uploadImage(photo);
-    let comments = []
+    // const getPhotoUrl = await storageService.uploadImage(photo);
+
+    let comments = [];
     const isAdded = await dbService.addBlog(
       title,
       detail,
-      getPhotoUrl,
+      photo,
       currentUser.email,
       comments,
       selectedTags
@@ -75,9 +76,9 @@ export default function TinyMCE({
     if (isAdded) {
       notify("Blog posted successfully");
       // addBlog()
-      dispatch(addBlog(isAdded.data))
+      dispatch(addBlog(isAdded.data));
       setTitle("");
-      setSelectedTags([])
+      setSelectedTags([]);
     } else {
       notify("Failed to post blog");
     }
@@ -87,11 +88,9 @@ export default function TinyMCE({
     }, 2000);
   };
 
-
   // edit blog
 
   const handleEditBlog = async () => {
-
     if (!currentUser) {
       return notify("Please Login First");
     }
@@ -110,29 +109,28 @@ export default function TinyMCE({
       return;
     }
 
-    setLoading(true)
+    setLoading(true);
     try {
-      await dbService.editPost(docId, detail, title, selectedTags)
-      navigate('/')
+      await dbService.editPost(docId, detail, title, selectedTags);
+      navigate("/");
     } catch (e) {
-      notify("Failed to edit post")
+      notify("Failed to edit post");
     }
-    setLoading(false)
-  }
+    setLoading(false);
+  };
   //
   useEffect(() => {
-    setIsEditing(editing)
-    setInitialValue(previousVal)
-    setTitle(previousTitle)
-    setSelectedTags(prevTags)
-  }, [])
+    setIsEditing(editing);
+    setInitialValue(previousVal);
+    setTitle(previousTitle);
+    setSelectedTags(prevTags);
+  }, []);
 
   return (
     <>
       <Toaster />
       <main className="grid grid-cols-10 items-start">
         <section className=" col-span-10 flex justify-center lg:col-span-7">
-
           <Editor
             apiKey="hiyi55219jowbez4et4l15xk73k2wh14bdeio77aave8j5k5"
             onInit={(evt, editor) => (editorRef.current = editor)}
@@ -171,7 +169,6 @@ export default function TinyMCE({
           />
         </section>
 
-
         <div className="col-span-10 lg:col-span-3 ">
           <div className="w-[90%] mx-auto">
             <Inputs
@@ -185,19 +182,21 @@ export default function TinyMCE({
               isEditing={isEditing}
               setTags={setTags}
             />
-            {!isEditing ? <button
-              className="mt-1 btn bg-yellow-500 px-3 py-2 flex justify-center items-center gap-3"
-              onClick={handleAddBlog}
-              title="Publish"
-            >
-              <img
-                width="30"
-                height="30"
-                src="https://img.icons8.com/bubbles/50/upload.png"
-                alt="publish"
-              />{" "}
-              Publish Blog
-            </button> :
+            {!isEditing ? (
+              <button
+                className="mt-1 btn bg-yellow-500 px-3 py-2 flex justify-center items-center gap-3"
+                onClick={handleAddBlog}
+                title="Publish"
+              >
+                <img
+                  width="30"
+                  height="30"
+                  src="https://img.icons8.com/bubbles/50/upload.png"
+                  alt="publish"
+                />{" "}
+                Publish Blog
+              </button>
+            ) : (
               <button
                 className="mt-1 btn bg-yellow-500 px-3 py-2 flex justify-center items-center gap-3"
                 onClick={handleEditBlog}
@@ -211,10 +210,8 @@ export default function TinyMCE({
                 />{" "}
                 Edit Blog
               </button>
-            }
-            <BasicModal isLoading={loading}
-
-            />
+            )}
+            <BasicModal isLoading={loading} />
           </div>
         </div>
       </main>

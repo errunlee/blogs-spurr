@@ -29,9 +29,10 @@ router.post(
     body("postedBy", "At least 5 chars").isLength({ min: 3 }),
     body("selectedTags"),
     body("comments"),
+    body("photo"),
   ],
   async (req, res) => {
-    const { title, blog, postedBy, selectedTags, comments } = req.body;
+    const { title, blog, postedBy, selectedTags, comments, photo } = req.body;
     const errors = validationResult(req);
     //check for err
     if (!errors.isEmpty()) {
@@ -44,6 +45,7 @@ router.post(
       selectedTags,
       comments,
       user: req.user.id,
+      photo,
     });
     const savedBlog = await newBlog.save();
     res.json(savedBlog);

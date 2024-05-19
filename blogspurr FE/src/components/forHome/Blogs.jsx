@@ -76,7 +76,7 @@ const Blogs = ({ tag }) => {
                   <div className="flex items-center  gap-3 mb-4">
                     <img
                       className="rounded aspect-square h-[60px] w-[60px]"
-                      src={blog.image || noImage}
+                      src={blog.photo || noImage}
                       alt="poster"
                     />
                     <h1 className="lg:text-2xl text-xl font-bold">

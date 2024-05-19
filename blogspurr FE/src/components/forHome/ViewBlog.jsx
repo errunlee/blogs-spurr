@@ -69,7 +69,7 @@ function ViewBlog({ blogData }) {
       {role == "ADMIN" && (
         <p className="my-2">Be Cautious: You are viewing as an admin.</p>
       )}
-      <img className="max-h-[400px]" src={blogData.image || noImage} alt="" />
+      <img className="max-h-[400px]" src={blogData.photo || noImage} alt="" />
 
       <div className="flex items-center">
         Tags

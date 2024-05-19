@@ -29,6 +29,9 @@ const BlogsSchema = new Schema({
   comments: {
     type: Array,
   },
+  photo: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("blog", BlogsSchema);

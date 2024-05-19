@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Tag from "./Tag";
+import { compressAndConvertToBase64 } from "../../utils/convertToBase64";
 
-const Inputs = ({ title, setTitle, photo, setPhoto, tags, setTags, setSelectedTags, selectedTags, isEditing }) => {
-
-  const handlePhotoChange = (e) => {
-    if (e.target.files[0]) {
-      setPhoto(e.target.files[0]);
-    }
+const Inputs = ({
+  title,
+  setTitle,
+  photo,
+  setPhoto,
+  tags,
+  setTags,
+  setSelectedTags,
+  selectedTags,
+  isEditing,
+}) => {
+  const handlePhotoChange = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await compressAndConvertToBase64(file);
+    console.log(base64);
+    setPhoto(base64);
   };
 
   const handleClick = (tag) => {
@@ -23,29 +34,33 @@ const Inputs = ({ title, setTitle, photo, setPhoto, tags, setTags, setSelectedTa
   };
 
   useEffect(() => {
-    console.log('selection', selectedTags);
+    console.log("selection", selectedTags);
     const newtags = tags.map((tag) => {
-      const isSelected = selectedTags.some(selectedTag => selectedTag.name === tag.name);
+      const isSelected = selectedTags.some(
+        (selectedTag) => selectedTag.name === tag.name
+      );
       return { ...tag, isSelected };
     });
 
-    setTags(newtags)
-  }, [selectedTags])
+    setTags(newtags);
+  }, [selectedTags]);
   return (
     <section>
       <div className="files flex flex-col mb-2">
         <label htmlFor="">Upload image</label>
-        <input type="file" accept="image/*" onChange={(e) => handlePhotoChange(e)}  />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => handlePhotoChange(e)}
+        />
       </div>
 
       <section className="tags">
         <span>Tags</span>
         <span className="text-red-500">*</span>
         <br />
-        {tags.map((tag,i) => {
-          return (
-            <Tag id={i} tag={tag} handleClick={handleClick} />
-          );
+        {tags.map((tag, i) => {
+          return <Tag id={i} tag={tag} handleClick={handleClick} />;
         })}
       </section>
 
