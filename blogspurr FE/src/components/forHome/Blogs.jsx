@@ -16,12 +16,23 @@ const Blogs = ({ tag }) => {
     setLoading(true);
     try {
       const allBlogs = await dbService.getAllBlogs();
-      setBlogs(allBlogs);
-      dispatch(readBlogs(allBlogs));
+      let filteredBlogs = allBlogs;
+
+      if (tag) {
+        filteredBlogs = allBlogs.filter((item) => {
+          return item.selectedTags.some(
+            (selectedTag) => selectedTag.name === tag
+          );
+        });
+      }
+
+      setBlogs(filteredBlogs);
+      dispatch(readBlogs(filteredBlogs));
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -31,9 +42,28 @@ const Blogs = ({ tag }) => {
 
   return (
     <>
+      <h1 className="lg:text-4xl text-2xl my-4 lg:mx-[5rem] mx-5">
+        {!tag ? (
+          " Latest blogs"
+        ) : (
+          <p>
+            Blogs with tag{" "}
+            <span className="text-yellow-400 font-bold border-b">{tag}</span>
+          </p>
+        )}
+      </h1>
+
       <BasicModal isLoading={loading} />
 
       <div className="flex flex-col lg:px-[5rem] px-5 items-center">
+        {blogs.length < 1 && !loading && (
+          <p>
+            No blogs found.{" "}
+            <Link className="border-b hover:text-slate-300" to="/">
+              Goto homepage
+            </Link>
+          </p>
+        )}
         {blogs.length > 0 &&
           blogs?.map((blog, i) => {
             const postedAtinSec = blog?.postedAt?.seconds;

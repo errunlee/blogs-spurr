@@ -37,10 +37,6 @@ const Homepage = () => {
       animate="final"
       className="home component"
     >
-      <h1 className="lg:text-4xl text-2xl my-4 lg:mx-[5rem] mx-5">
-        Latest blogs{" "}
-      </h1>
-
       <Blogs tag={tag} />
     </motion.div>
   );
