@@ -51,10 +51,11 @@ function ViewBlog({ blogData }) {
     if (agree) {
       if (role === "ADMIN") {
         dbService.deleteBlog(blogData._id);
+        notify("Blog deleted successfully");
       } else {
         reportFunc();
+        notify("Blog reported successfully");
       }
-      notify("Blog deleted successfully");
       setOpen(false);
       setTimeout(() => {
         navigate("/");

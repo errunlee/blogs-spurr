@@ -6,6 +6,7 @@ import { signIn } from "../features/blogSlices";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from "yup";
 import BasicModal from "./BasicModal";
+import Toaster, { notify } from "./Blogform/Toaster";
 const validationSchema = Yup.object({
   fullName: Yup.string()
     .required("This field is required")
@@ -41,19 +42,19 @@ function Register() {
       values.email,
       values.password
     );
-    console.log(isCreated);
-    if (isCreated.ok) {
-      const user = await authService.getUser();
-      dispatch(signIn(user));
-      navigate("/");
+    if (isCreated.success) {
+      notify("User created successfully");
+
+      navigate("/login");
     } else {
-      alert("failed to create account" + isCreated);
+      notify(isCreated.error);
     }
     setLoading(false);
   };
 
   return (
     <>
+      <Toaster />
       <BasicModal isLoading={loading} />
       <h1 className="text-3xl my-3 font-mono text-slate-300 font-bold text-center">
         Join thousands of bloggers from all over the world now!

@@ -20,6 +20,7 @@ function EditDelete({ isVisible, id }) {
     setLoading(true);
     try {
       await dbService.deleteBlog(id);
+      notify("Blog deleted successfully");
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -53,11 +54,14 @@ function EditDelete({ isVisible, id }) {
           Delete
         </button>
       </div>
-      <ConfirmDialog open={open} setOpen={setOpen} setAgree={setAgree} />
-      <BasicModal
+
+      <ConfirmDialog
         message={"Are you sure you want to delete the blog?"}
-        isLoading={loading}
+        open={open}
+        setOpen={setOpen}
+        setAgree={setAgree}
       />
+      <BasicModal isLoading={loading} />
     </>
   );
 }

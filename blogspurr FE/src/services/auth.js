@@ -12,7 +12,7 @@ export class AuthService {
     const resData = await response.json();
     localStorage.setItem("auth-token", resData.authtoken);
     // console.log(resData.authtoken);
-    return response;
+    return resData;
   }
 
   async logUserOut() {
