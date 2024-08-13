@@ -13,4 +13,8 @@ export default defineConfig({
   optimizeDeps: {
     include: ['@tinymce/tinymce-react'],
   },
+  server: {
+    host: '0.0.0.0', // Allows access from any network interface
+    port: 5173,      // Explicitly set the port
+  },
 })
